@@ -9,33 +9,38 @@
 {% block content %}
 
 <style>
-    h1 {text-align: center;}
+    h1 {text-align: center;} 
 
-    form { width: 80%;
+    form { width: 53%;
         position: relative;
         left: 100px;
-        }
-{% comment %}     
-    button {position: relative;
+        } 
+    {% comment %} button {position: relative;
         left: 550px;
         } {% endcomment %}
-
 </style>
 
-
-<br/>
-<h1 style="font-weight: bold;"> Update </h1>
-<br/>
-<div class='form'>
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
+{%if user.is_authenticated%}
+    <br/>
+    <h1 style="font-weight: bold;"> Update </h1>
+    <br/>
+    <div class='form'>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+        </div>
     </div>
-</div>
 
-<div align="center">
-    <button class="btn btn-success" >Update</button>
-</div>
+    <div align="center"> 
+        <button class="btn btn-success" >Update</button>
+    </div>
+
+{% else %}
+
+<h1 style="font-weight: bold;"> Not Loged In </h1>
+
+{% endif %}
 
 {% endblock content %}

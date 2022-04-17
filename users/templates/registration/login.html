@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %} 
+
+{%block title%}
+<title>Login</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    h1 {text-align: center;}
+
+    form { width: 80%;
+        position: relative;
+        left: 100px;
+        }
+
+</style>
+
+<div class="text-center">
+    <br/> <br/>
+    <h1 style="font-weight: bold;"> Login </h1>
+    <br/> <br/>
+        <div class='form'>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+            </div>
+        </div>
+        <br/> <br/>
+    <button class="btn btn-success" >Login</button>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

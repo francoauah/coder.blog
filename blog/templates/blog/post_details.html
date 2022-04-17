@@ -11,16 +11,18 @@
         <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body"> 
                 <h1>{{ post.title }}</h1>
-                <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+                <p class=" text-muted"> By: {{ post.author }} - {{ post.created_on }}</p>
                 <p class="card-text ">{{ post.content | safe }}</p>
                 {% if post.image %}
                 <img src="{{post.image.url}}" class="card-img-top" alt="..." height="500px"<br />
                 {%endif%}
             </br></br>
-                <div class="text-center">
-                    <a name="" id="" class="btn btn-warning" href="{% url 'update' post.pk  %}" role="button" >Update</a>
-                    <a name="" id="" class="btn btn-danger" href="{% url 'delete' post.pk  %}" role="button">Delete</a>
-                </div>
+                {%if user.is_authenticated%}
+                    <div class="text-center">
+                        <a name="" id="" class="btn btn-warning" href="{% url 'update' post.pk  %}" role="button" >Update</a>
+                        <a name="" id="" class="btn btn-danger" href="{% url 'delete' post.pk  %}" role="button">Delete</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
