@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %} 
+
+{% block title %} 
+<title> Delete </title>
+{% endblock title %}
+
+
+
+{% block content %}
+
+<style>
+    h1 {text-align: center;}
+
+    h3 {text-align: center;}
+
+    form { width: 80%;
+        position: relative;
+        left: 100px;
+        }
+    
+    {% comment %} button {position: relative;
+        left: 500px;
+        } {% endcomment %}
+
+</style>
+
+
+<br/> <br/>
+<h1 style="font-weight: bold;"> Confirm Action </h1>
+<br/> <br/>
+<h3> You wish to delete: {{post.title}}</h3>
+<br/> <br/>
+<div class='form'>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+    </div>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-danger" >Delete</button> 
+    <a name="" id="" class="btn btn-dark" href="{% url 'details' post.pk  %}" role="button">Go Back</a>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

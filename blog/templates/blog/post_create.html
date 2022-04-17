@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %} 
+
+{%block title%}
+<title>Create</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    h1 {text-align: center;}
+
+    form { width: 80%;
+        position: relative;
+        left: 100px;
+        }
+    
+    button {position: relative;
+        left: 550px;
+        }
+
+</style>
+
+
+<br/> <br/>
+<h1 style="font-weight: bold;"> Crear Nueva </h1>
+<br/> <br/>
+<div class='form'>
+    <div class="form-group">
+        <form method="POST" enctype ="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" >Crear</button>
+    </div>
+</div>
+{% endblock content %}
