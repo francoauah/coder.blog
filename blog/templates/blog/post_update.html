@@ -21,26 +21,35 @@
 </style>
 
 {%if user.is_authenticated%}
-    <br/>
-    <h1 style="font-weight: bold;"> Update </h1>
-    <br/>
-    <div class='form'>
-        <div class="form-group">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.media }}
-                {{ form.as_p }}
+    {%if user.id == post.author.id%}
+        <br/>
+        <h1 style="font-weight: bold;"> Update </h1>
+        <br/>
+        <div class='form'>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+            </div>
         </div>
-    </div>
 
-    <div align="center"> 
-        <button class="btn btn-success" >Update</button>
-    </div>
+        <div align="center"> 
+            <button class="btn btn-success" >Update</button>
+        </div>
+    {% else %}
+    <br/>
+        <h1 style="font-weight: bold;"> Not Loged In </h1>
+    {% endif %}
 
 {% else %}
-
+<br/>
 <h1 style="font-weight: bold;"> Not Loged In </h1>
 
 {% endif %}
 
 {% endblock content %}
+
+
+{% block footer %}
+{% endblock footer %}

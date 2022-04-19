@@ -38,3 +38,8 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
     success_url = reverse_lazy('home') 
+
+#---------------------------------------------------------------------------------------#
+
+def about(request):
+    return render(request, "blog/about.html", {})

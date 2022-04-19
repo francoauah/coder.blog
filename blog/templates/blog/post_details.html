@@ -5,23 +5,24 @@
 {% endblock title %}
 
 {% block content %}
-
 <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body"> 
                 <h1>{{ post.title }}</h1>
                 <p class=" text-muted"> By: {{ post.author }} - {{ post.created_on }}</p>
-                <p class="card-text ">{{ post.content | safe }}</p>
+                <p class="card-text ">{{post.content|safe}}</p>
                 {% if post.image %}
                 <img src="{{post.image.url}}" class="card-img-top" alt="..." height="500px"<br />
                 {%endif%}
             </br></br>
                 {%if user.is_authenticated%}
-                    <div class="text-center">
-                        <a name="" id="" class="btn btn-warning" href="{% url 'update' post.pk  %}" role="button" >Update</a>
-                        <a name="" id="" class="btn btn-danger" href="{% url 'delete' post.pk  %}" role="button">Delete</a>
-                    </div>
+                    {%if user.id == post.author.id%}
+                        <div class="text-center">
+                            <a name="" id="" class="btn btn-warning" href="{% url 'update' post.pk  %}" role="button" >Update</a>
+                            <a name="" id="" class="btn btn-danger" href="{% url 'delete' post.pk  %}" role="button">Delete</a>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -29,3 +30,6 @@
 </div> 
 
 {% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

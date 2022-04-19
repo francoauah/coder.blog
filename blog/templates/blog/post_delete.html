@@ -25,22 +25,25 @@
 </style>
 
 {%if user.is_authenticated%}
-    <br/> <br/>
-    <h1 style="font-weight: bold;"> Confirm Action </h1>
-    <br/> <br/>
-    <h3> You wish to delete: </3> <h3 style="font-weight: bold;"> {{post.title}} </3>
-    <br/> <br/>
-    <div class='form'>
-        <div class="form-group">
-            <form method="POST">
-                {% csrf_token %}
+    {%if user.id == post.author.id%}
+        <br/> <br/>
+        <h1 style="font-weight: bold;"> Confirm Action </h1>
+        <br/> <br/>
+        <h3> You wish to delete: </3> <h3 style="font-weight: bold;"> {{post.title}} </3>
+        <br/> <br/>
+        <div class='form'>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+            </div>
         </div>
-    </div>
-
-    <div class="text-center">
-        <button class="btn btn-danger" >Delete</button> 
-        <a name="" id="" class="btn btn-dark" href="{% url 'details' post.pk  %}" role="button">Go Back</a>
-    </div>
+    {% else %}
+        <h1 style="font-weight: bold;"> Not Loged In </h1>
+    {% endif %}
+        <div class="text-center">
+            <button class="btn btn-danger" >Delete</button> 
+            <a name="" id="" class="btn btn-dark" href="{% url 'details' post.pk  %}" role="button">Go Back</a>
+        </div>
 
 
 {% else %}
