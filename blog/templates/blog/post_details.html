@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-
+{% load static %}
 {%block title%}
 <title>{{ post.title }}</title>
 {% endblock title %}
@@ -27,9 +27,41 @@
             </div>
         </div>
     </div>
-</div> 
+{% comment %} </div> 
 
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+    {% if post.author.profile.profile_pic%}
+        <img src="{{post.author.profile.profile_pic.url}}" class="card-img" width=200 height=200>
+    {% else %}
+        <img src="{% static 'images/profile-icon-png-898.png' %}" class="card-img" width=200 height=200>
+    {% endif %}
+    </div>
+    <div class="col-md-10">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.author }}</h5>
+            <p <small class=" text-muted">
+                
+                <a href="{% url 'profile' post.author.profile.id %}">Profile </a> |
+
+                {% if post.author.profile.website %}
+                    <a href="{{post.author.profile.website}}"> Website </a> |
+                {% endif %}
+                {% if post.author.profile.facebook %}
+                    <a href="{{post.author.profile.facebook}}"> Facebook </a> |
+                {% endif %}
+
+                {% if post.author.profile.twitter %}
+                    <a href="{{post.author.profile.twitter}}"> Twitter </a> |
+                {% endif %}
+
+            </p>
+            <p class="card-text">
+                {{post.author.profile.biographie}}
+            </p>
+        </div>
+        </div>
+    </div>
+</div>  {% endcomment %}
 {% endblock content %}
-
-{% block footer %}
-{% endblock footer %}

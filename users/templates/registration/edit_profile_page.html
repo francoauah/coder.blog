@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %} 
+
+{%block title%}
+<title>Edit Profile</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    h1 {text-align: center;}
+
+    form { width: 53%;
+        position:relative;
+        left: 50px;
+        }
+
+</style>
+
+{%if user.is_authenticated%}
+    {% if user.id == profile.user.id %}
+            <br/> <br/>
+            <h1 style="font-weight: bold;"> Edit Profile </h1>
+            <br/> <br/>
+            <div class='form'>
+                <div class="form-group">
+                    <form method="POST" enctype ="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-success" >Save</button>
+        </div>
+        <br/> <br/>
+
+    {% else %}
+        <br/> <br/>
+        <h1 style="font-weight: bold;"> Not allowed</h1>
+        
+    {% endif %}
+
+{% else %}
+    <br/> <br/>
+    <h1 style="font-weight: bold;"> Not Loged In </h1>
+{% endif %}
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

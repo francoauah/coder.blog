@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %} 
+
+{%block title%}
+<title> Settings</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    h1 {text-align: center;}
+
+    form { width: 53%;
+        position:relative;
+        left: 50px;
+        }
+
+</style>
+
+
+<br/> <br/>
+<h1 style="font-weight: bold;"> Change Settings </h1>
+
+<div class='form'>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+    </div>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-success" >Save</button>
+</div>
+<br/> <br/>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
